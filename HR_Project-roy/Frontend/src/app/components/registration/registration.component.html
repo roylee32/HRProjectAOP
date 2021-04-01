@@ -1,0 +1,16 @@
+<h1>Registration</h1>
+<div id="formDiv">
+    <form [formGroup]="registrationForm" (ngSubmit)="submitForm(registrationForm)">
+        <label>Username</label><br>
+        <input type="text" formControlName="username" required><br><br>
+        <label>Password</label><br>
+        <input type="password" formControlName="password" required><br><br>
+        <label>Retype Password</label><br>
+        <input type="password" formControlName="passwordRetype" required><br><br>
+        <label>Token</label><br>
+        <input type="text" formControlName="token" required><br><br>
+        <button type="submit" class="btn btn-secondary" [disabled]="!registrationForm.valid">Register</button><br><br>
+        <a class="dropdown-item" routerLink="/login">Already have an account? Login</a>
+    </form>
+    <h3 class="errorMessage">{{errorMessage}}</h3>
+</div>

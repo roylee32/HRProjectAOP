@@ -1,0 +1,90 @@
+<app-hr-nav-bar></app-hr-nav-bar>
+<h1>Application Detail</h1>
+<div id="formDiv">
+    <hr><h3>Avatar</h3><hr>
+    <img [src]="avatar" width="200" height="200">
+    <hr><h3>Personal Information</h3><hr>
+    <form [formGroup]="personalInfoForm">
+        <label>First Name</label><br>
+        <input type="text" formControlName="firstName" disabled><br><br>
+        <label>Last Name</label><br>
+        <input type="text" formControlName="lastName" disabled><br><br>
+        <label>Middle Name</label><br>
+        <input type="text" formControlName="middleName" disabled><br><br>
+        <label>Address Line 1</label><br>
+        <input type="text" formControlName="addressLine1" disabled><br><br>
+        <label>Address Line 2</label><br>
+        <input type="text" formControlName="addressLine2" disabled><br><br>
+        <label>City</label><br>
+        <input type="text" formControlName="city" disabled><br><br>
+        <label>Zipcode</label><br>
+        <input type="text" formControlName="zipcode" disabled><br><br>
+        <label>State</label><br>
+        <input type="text" formControlName="state" disabled><br><br>
+        <label>Email</label><br>
+        <input type="text" formControlName="email" disabled><br><br>
+        <label>Cell Phone</label><br>
+        <input type="text" formControlName="cellPhone" disabled><br><br>
+        <label>Alternate Phone</label><br>
+        <input type="text" formControlName="alternatePhone" disabled><br><br>
+        <label>Car Info</label><br>
+        <input type="text" formControlName="carInfo" disabled><br><br>
+        <label>SSN</label><br>
+        <input type="text" formControlName="ssn" disabled><br><br>
+        <label>Date of Birth</label><br>
+        <input type="text" formControlName="DOB" disabled><br><br>
+        <label>Gender</label><br>
+        <input type="text" formControlName="gender" disabled><br><br>
+        <label>Driver's License</label><br>
+        <input type="text" formControlName="DL" disabled><br><br>
+    </form>
+    <hr><h3>Visa Status</h3><hr>
+    <form [formGroup]="visaInfoForm">
+        <label>Visa Type</label><br>
+        <input type="text" formControlName="visaType" disabled><br><br>
+        <label>Visa Start Date</label><br>
+        <input type="text" formControlName="visaStartDate" disabled><br><br>
+        <label>Visa End Date</label><br>
+        <input type="text" formControlName="visaEndDate" disabled><br><br>
+    </form>
+    <hr><h3>Emergency Contact</h3><hr>
+    <form [formGroup]="emergencyInfoForm">
+        <label>First Name</label><br>
+        <input type="text" formControlName="emergencyFirstName" disabled><br><br>
+        <label>Last Name</label><br>
+        <input type="text" formControlName="emergencyLastName" disabled><br><br>
+        <label>Middle Name</label><br>
+        <input type="text" formControlName="emergencyMiddleName" disabled><br><br>
+        <label>Phone</label><br>
+        <input type="text" formControlName="emergencyPhone" disabled><br><br>
+        <label>Email</label><br>
+        <input type="text" formControlName="emergencyEmail" disabled><br><br>
+        <label>Relationship</label><br>
+        <input type="text" formControlName="emergencyRelationShip" disabled><br><br>
+    </form>
+    <hr><h3>Reference</h3><hr>
+    <form [formGroup]="referenceInfoForm">
+        <label>First Name</label><br>
+        <input type="text" formControlName="referenceFirstName" disabled><br><br>
+        <label>Last Name</label><br>
+        <input type="text" formControlName="referenceLastName" disabled><br><br>
+        <label>Middle Name</label><br>
+        <input type="text" formControlName="referenceMiddleName" disabled><br><br>
+        <label>Phone</label><br>
+        <input type="text" formControlName="referencePhone" disabled><br><br>
+        <label>Address</label><br>
+        <input type="text" formControlName="referenceAddress" disabled><br><br>
+        <label>Email</label><br>
+        <input type="text" formControlName="referenceEmail" disabled><br><br>
+        <label>Relationship</label><br>
+        <input type="text" formControlName="referenceRelationShip" disabled><br><br>
+    </form>
+    <hr><h3>Action</h3><hr>
+    <form [formGroup]="commentForm" (ngSubmit)="commentApplication(commentForm)">
+        <textarea formControlName="comment" cols="70" rows="10" placeholder="Leave a comment ..." required></textarea><br><br>
+        <button class="btn btn-secondary" [disabled]="!commentForm.valid">Submit</button><br><br>
+    </form>
+    <button class="btn btn-primary" (click)="approveApplication()">Approve</button><br><br>
+    <button class="btn btn-primary" (click)="rejectApplication()">Reject</button><br><br>
+    <h3 class="errorMessage">{{message}}</h3>
+</div>

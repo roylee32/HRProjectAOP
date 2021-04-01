@@ -1,0 +1,72 @@
+<app-hr-nav-bar></app-hr-nav-bar>
+<h1>House Detail</h1>
+<div id="formDiv">
+    <hr><h3>House Info</h3><hr>
+    <table class="table table-striped">
+        <tbody>
+            <tr><b>Address</b></tr>
+            <tr>{{houseInfo.address}}</tr>
+            <tr><b>Landlord</b></tr>
+            <tr>{{houseInfo.contact.firstName}} {{houseInfo.contact.lastName}}</tr>
+            <tr><b>Phone Number</b></tr>
+            <tr>{{houseInfo.contact.phoneNumber}}</tr>
+            <tr><b>Email</b></tr>
+            <tr>{{houseInfo.contact.email}}</tr>
+            <tr><b>Max Occupancy</b></tr>
+            <tr>{{houseInfo.numberOfPerson}}</tr>
+        </tbody>
+    </table>
+    <hr><h3>Facility Info</h3><hr>
+    <table class="table table-striped">
+        <thead>
+            <td><b>Facility</b></td>
+            <td><b>Amount</b></td>
+        </thead>
+        <tbody>
+            <tr *ngFor="let facility of facilityInfo">
+                <td>{{facility.description}}</td>
+                <td>{{facility.quantity}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr><h3>Resident Info</h3><hr>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <td><b>Name</b></td>
+                <td><b>Phone</b></td>
+                <td><b>Email</b></td>
+                <td><b>Car</b></td>
+                <td><b>Detail</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let resident of residents">
+                <td>{{resident.firstName}}</td>
+                <td>{{resident.cellPhone}}</td>
+                <td>{{resident.email}}</td>
+                <td>{{resident.car}}</td>
+                <td>
+                    <button (click)="seeDetail(resident.eid)">See Detail</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr><h3>Facility Report</h3><hr>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <td><b>Title</b></td>
+                <td><b>Date</b></td>
+                <td><b>Status</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let report of facilityReports" routerLink="/reportDetail/{{report.frid}}">
+                <td>{{report.title}}</td>
+                <td>{{report.reportDate}}</td>
+                <td>{{report.status}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

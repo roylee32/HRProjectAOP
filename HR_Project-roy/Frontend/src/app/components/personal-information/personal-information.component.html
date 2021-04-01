@@ -1,0 +1,14 @@
+<ng-container *ngIf="visitedEid == -1">
+    <app-user-nav-bar></app-user-nav-bar>
+</ng-container>
+<ng-container *ngIf="visitedEid != -1">
+    <app-hr-nav-bar></app-hr-nav-bar>
+</ng-container>
+<h1>Personal Information</h1>
+
+<app-name-section [visitedEid]="visitedEid"></app-name-section>
+<app-address-section [visitedEid]="visitedEid"></app-address-section>
+<app-contact-info-section [visitedEid]="visitedEid"></app-contact-info-section>
+<app-employment-section [visitedEid]="visitedEid"></app-employment-section>
+<app-emergency-contact-section [visitedEid]="visitedEid"></app-emergency-contact-section>
+<app-document-section [visitedEid]="visitedEid"></app-document-section>

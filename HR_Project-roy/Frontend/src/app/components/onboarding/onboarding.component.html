@@ -1,0 +1,131 @@
+<app-user-nav-bar></app-user-nav-bar>
+<h1>Onboarding Application</h1>
+<div id="formDiv">
+    <h3 class="errorMessage">{{errorMessage}}</h3>
+    <form [formGroup]="onboardingForm" (ngSubmit)="submitForm(onboardingForm)">
+        <hr><h3>Avatar</h3><hr>
+        <img [src]="defaultAvatarUrl" width="200" height="200"><br><br>
+        <input class="form-control" type="file" (change)="selectAvatarFile($event)" [disabled]="!canSubmit">
+        <!-- <input class="form-control" type="file" formControlName="avatar" (change)="selectAvatarFile($event)"> -->
+
+        <hr><h3>Personal Information</h3><hr>
+        <label>* First Name</label><br>
+        <input type="text" formControlName="firstName" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>* Last Name</label><br>
+        <input type="text" formControlName="lastName" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>Middle Name</label><br>
+        <input type="text" formControlName="middleName" [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>* Address Line 1</label><br>
+        <input type="text" formControlName="addressLine1" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>Address Line 2</label><br>
+        <input type="text" formControlName="addressLine2" [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>* City</label><br>
+        <input type="text" formControlName="city" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>* Zipcode</label><br>
+        <input type="text" formControlName="zipcode" required maxlength="5" [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>* State</label><br>
+        <input type="text" formControlName="state" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>Email</label><br>
+        <label>{{email}}</label><br><br>
+        <label>* Cell Phone</label><br>
+        <input type="text" formControlName="cellPhone" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>Alternate Phone</label><br>
+        <input type="text" formControlName="alternatePhone" [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>Car Info</label><br>
+        <input type="text" formControlName="carInfo" placeholder="Make_Model_Color" [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>* SSN</label><br>
+        <input type="text" formControlName="ssn" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>* Date of Birth</label><br>
+        <input type="text" formControlName="DOB" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>* Gender</label><br>
+        <select formControlName="gender" required [attr.disabled]="!canSubmit ? '': null">
+            <option value="I don't want to answer">I don't want to answer</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <hr><h3>Work Authorization</h3><hr>
+        <label>* Are you a U.S citizen/permanent resident?</label><br>
+        <select formControlName="isCitizenOrPR" [(ngModel)]="citizenOrPR" required [attr.disabled]="!canSubmit ? '': null">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br><br>
+        <ng-container *ngIf="citizenOrPR == 'No'">
+            <label>* What is your work authorization?</label><br>
+            <select formControlName="visaType" [(ngModel)]="VisaType" required [attr.disabled]="!canSubmit ? '': null">
+                <option value="H1-B">H1-B</option>
+                <option value="L2">L2</option>
+                <option value="F1(CPT/OPT)">F1(CPT/OPT)</option>
+                <option value="H4">H4</option>
+                <option value="Other">Other</option>
+            </select><br><br>
+            <ng-container *ngIf="VisaType == 'Other'">
+                <label>* Enter your work authorization</label><br>
+                <input type="text" formControlName="visaType" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+            </ng-container>
+            <label>* Authorization Start Date</label><br>
+            <input type="text" formControlName="visaStartDate" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+            <label>* Authorization End Date</label><br>
+            <input type="text" formControlName="visaEndDate" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+            <label>* Upload Authorization Document</label><br>
+            <!-- <input class="form-control" type="file" formControlName="visaUpload" (change)="selectVisaFile($event)" required><br><br> -->
+            <input class="form-control" type="file" (change)="selectVisaFile($event)" (ng-required)="creating" [attr.disabled]="!canSubmit ? '': null"><br><br>
+        </ng-container>
+
+        <hr><h3>Additional Information</h3><hr>
+        <label>Do you have a driver's license?</label><br>
+        <select formControlName="haveDL" [(ngModel)]="ifHaveDL" required [attr.disabled]="!canSubmit ? '': null">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br><br>
+        <ng-container *ngIf="ifHaveDL == 'Yes'">
+            <label>* Driver's License Number</label><br>
+            <input type="text" formControlName="DL" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+            <label>* Expiration Date</label><br>
+            <input type="text" formControlName="DLExpiration" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+            <label>* Upload Driver's License</label><br>
+            <!-- <input class="form-control" type="file" formControlName="DLUpload" (change)="selectDLFile($event)" required><br><br> -->
+            <input class="form-control" type="file" (change)="selectDLFile($event)" (ng-required)="creating" [attr.disabled]="!canSubmit ? '': null"><br><br>
+        </ng-container>
+
+        <hr><h3>Reference</h3><hr>
+        <label>Do you have a reference?</label><br>
+        <select formControlName="haveReference" [(ngModel)]="ifHaveReference" required [attr.disabled]="!canSubmit ? '': null">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br><br>
+        <ng-container *ngIf="ifHaveReference == 'Yes'">
+            <label>* First Name</label><br>
+            <input type="text" formControlName="referenceFirstName" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+            <label>* Last Name</label><br>
+            <input type="text" formControlName="referenceLastName" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+            <label>Middle Name</label><br>
+            <input type="text" formControlName="referenceMiddleName" [attr.disabled]="!canSubmit ? '': null"><br><br>
+            <label>* Phone</label><br>
+            <input type="text" formControlName="referencePhone" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+            <label>* Address</label><br>
+            <input type="text" formControlName="referenceAddress" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+            <label>* Email</label><br>
+            <input type="email" formControlName="referenceEmail" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+            <label>* Relationship</label><br>
+            <input type="text" formControlName="referenceRelationShip" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+        </ng-container>
+        
+        <hr><h3>Emergency Contact</h3><hr>
+        <label>* First Name</label><br>
+        <input type="text" formControlName="emergencyFirstName" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>* Last Name</label><br>
+        <input type="text" formControlName="emergencyLastName" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>Middle Name</label><br>
+        <input type="text" formControlName="emergencyMiddleName" [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>* Phone</label><br>
+        <input type="text" formControlName="emergencyPhone" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>* Email</label><br>
+        <input type="email" formControlName="emergencyEmail" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <label>* Relationship</label><br>
+        <input type="text" formControlName="emergencyRelationShip" required [attr.disabled]="!canSubmit ? '': null"><br><br>
+        <button type="submit" class="btn btn-secondary" [disabled]="!onboardingForm.valid || !canSubmit">Submit</button><br><br>
+        <a class="dropdown-item" routerLink="/documentUpload">Go Upload Some Files While You Wait</a>
+    </form>
+    <h3 class="errorMessage">{{message}}</h3>
+</div>

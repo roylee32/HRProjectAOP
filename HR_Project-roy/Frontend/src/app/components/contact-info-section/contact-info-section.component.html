@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-body">
+        <h3>Contact Info</h3>
+        <form [formGroup]="contactInfoForm" (ngSubmit)="submitForm(contactInfoForm)">
+            <label>Personal Email</label><br>
+            <input type="text" formControlName="personalEmail" [attr.disabled]="!editable ? '' : null"><br>
+            <label>Cellphone</label><br>
+            <input type="text" formControlName="cellPhone" [attr.disabled]="!editable ? '' : null"><br>
+            <label>Work Phone</label><br>
+            <input type="text" formControlName="workPhone" [attr.disabled]="!editable ? '' : null"><br><br>
+            <button (click)="makeEditable()" class="btn btn-secondary" *ngIf="!editable">edit</button>
+            <button type="submit" class="btn btn-secondary" *ngIf="editable">save</button>
+            <button (click)="cancel()" class="btn btn-secondary" *ngIf="editable">cancel</button>
+        </form>
+    </div>
+  </div>

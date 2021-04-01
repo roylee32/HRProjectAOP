@@ -1,0 +1,28 @@
+<app-hr-nav-bar></app-hr-nav-bar>
+<app-hr-email></app-hr-email>
+<h1>Application Review</h1>
+<div id="formDiv">
+    <hr><h3>Applications</h3><hr>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <td><b>Applicant</b></td>
+                <td><b>Date</b></td>
+                <td><b>Status</b></td>
+                <td><b>Type</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let application of applications">
+                <td>
+                    <a routerLink="/onboardingApplicationDetail/{{application.id}}">{{application.employee.firstName}} {{application.employee.lastName}}</a>
+                </td>
+                <td>{{application.createDate}}</td>
+                <td>{{application.status}}</td>
+                <td>
+                    <a routerLink="/onboardingApplicationDetail/Documents/{{application.employee.eid}}">{{application.applicationType}}</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
