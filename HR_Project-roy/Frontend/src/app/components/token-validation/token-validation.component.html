@@ -1,9 +1,0 @@
-<h1>Token Validation</h1>
-<div id="formDiv">
-    <form [formGroup]="validationForm" (ngSubmit)="submitForm(validationForm)">
-        <label>Registration Token</label><br>
-        <input type="text" formControlName="token" required><br><br>
-        <button type="submit" class="btn btn-secondary" [disabled]="!validationForm.valid">Validate</button><br>
-    </form>
-    <h3 class="errorMessage">{{errorMessage}}</h3>
-</div>
