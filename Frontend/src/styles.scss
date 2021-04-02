@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+h1 {
+    text-align: center;
+}
+
+#formDiv {
+    width: 50%;
+    border-style:groove;
+    border-radius: 10px;
+    border-color: lightgray;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+h3.errorMessage{
+    color: red;
+}
+.waves-light{
+    font-size:15px;
+    margin-left: 5px;
+    margin-right: 5px;
+}

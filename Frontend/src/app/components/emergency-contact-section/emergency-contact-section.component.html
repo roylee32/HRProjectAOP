@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-body">
+        <h3>Emergency Contact</h3>
+        <!--
+        <form [formGroup]="emergencyContactForm" (ngSubmit)="submitForm(emergencyContactForm)">
+        <div *ngFor="let contact of contactList; index as i">
+            <label>Contact</label><br>
+            <input type="text" value={{contact.firstName}} [attr.disabled]="!editable ? '' : null">
+            <input type="text" value={{contact.phoneNumber}}  [attr.disabled]="!editable ? '' : null">
+            <input type="text" value={{contact.address}}  [attr.disabled]="!editable ? '' : null"><br><br>
+            <button (click)="makeEditable()" class="btn btn-secondary" *ngIf="!editable">edit</button>
+            <button type="submit" class="btn btn-secondary" *ngIf="editable">save</button>
+            <button (click)="cancel()" class="btn btn-secondary" *ngIf="editable">cancel</button>
+        </div>
+        </form>
+    -->
+        
+        <ul class="list-group list-group-flush" *ngFor="let contact of contactList; index as i">
+            <label>Emergency Contact Info {{i+1}}: </label>
+            <li class="list-group-item"><b>Name:</b> {{contact.firstName}} {{contact.lastName}}<span class="tab"></span><b>Phone Number:</b> {{contact.phoneNumber}}<span class="tab"></span><b>Address:</b> {{contact.address}}</li>  
+        </ul>
+    
+    </div>
+  </div>

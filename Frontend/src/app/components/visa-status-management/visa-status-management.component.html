@@ -1,0 +1,50 @@
+<app-hr-nav-bar></app-hr-nav-bar>
+<table mdbTable bordered="true">
+    <thead>
+        <tr>
+            <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let v of visaData; let i=index">
+            <tr>
+                <th>
+                    <button (click)="maximize(v, i)" class="btn btn-secondary" *ngIf="selected === v">-
+                        (Minimize)</button>
+                    <button (click)="minimize(v, i)" class="btn btn-secondary" *ngIf="selected !== v">+
+                        (Expand)</button>
+                </th>
+                <td>{{employeeData[i].firstName}}</td>
+                <td>{{v.visaType}}</td>
+                <td>{{v.visaEndDate}}</td>
+                <td>{{dateDiffData[i] | number: '1.0-0'}}</td>
+                <td>Action Required</td>
+
+            </tr>
+
+
+            <tr *ngIf="selected === v">
+                <td></td>
+                <td colspan="2">
+                    Name: {{wholeName}} <br>
+                    Visa: {{v.visaType}}<br>
+                    Start Date: {{v.visaStartDate}}<br>
+                    End Date: {{v.visaEndDate}}<br>
+                    
+                </td>
+                <td colspan="3">
+                    <div *ngFor="let doc of documentsData; let j=index">
+                        <span>{{doc}} {{createData[j]}}<br></span>
+                    </div>
+                    <span>{{nextSteps}}</span><br>
+                    <button (click)="sendEmail(i)" class="email-button" style="float: right; margin-right: 25px;">Send Email</button><br>
+                    <span style="float:right; margin-right: 4px; color:red;">{{errorMessage}}</span>
+                </td>
+    
+            </tr>
+        </ng-container>
+
+
+
+    </tbody>
+</table>

@@ -1,0 +1,50 @@
+<ng-container *ngIf="role == 'User'">
+    <app-user-nav-bar></app-user-nav-bar>
+</ng-container>
+<ng-container *ngIf="role == 'HR'">
+    <app-hr-nav-bar></app-hr-nav-bar>
+</ng-container>
+<h1>Report Detail</h1>
+<div id="formDiv">
+    <hr><h3>Report Information</h3><hr>
+    <table class="table table-striped">
+        <tbody>
+            <tr><b>Title</b></tr>
+            <tr>{{reportInfo.title}}</tr>
+            <tr><b>Create By</b></tr>
+            <tr>{{reportInfo.employee.firstName}} {{reportInfo.employee.lastName}}</tr>
+            <tr><b>Create Date</b></tr>
+            <tr>{{reportInfo.reportDate}}</tr>
+            <tr><b>Description</b></tr>
+            <tr>{{reportInfo.description}}</tr>
+            <tr><b>Status</b></tr>
+            <tr>{{reportInfo.status}}</tr>
+        </tbody>
+    </table>
+    <hr><h3>New Comment</h3><hr>
+    <form [formGroup]="commentForm" (ngSubmit)="submitForm(commentForm)">
+        <textarea formControlName="comment" cols="70" rows="10" placeholder="Leave a comment ..." required></textarea><br><br>
+        <button type="submit" class="btn btn-secondary" [disabled]="!commentForm.valid">Comment</button>
+    </form>
+    <h3 class="errorMessage">{{message}}</h3>
+    <hr><h3>Comment History</h3><hr>
+    <h3 class="errorMessage">{{updateMessage}}</h3>
+    <div *ngFor="let comment of comments" >
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td><b>Create By:</b></td>
+                    <td>{{comment.employee.firstName}} {{comment.employee.lastName}}</td>
+                </tr>
+                <tr>
+                    <td><b>Comment Date</b></td>
+                    <td>{{comment.lastModificationDate}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <form>
+            <textarea #updateComment cols="70" rows="5" [disabled]="!isCreator(comment.employee.eid)">{{comment.comments}}</textarea><br><br>
+            <button (click)="updateCommentFunc(updateComment.value, comment.frdid)" class="btn btn-secondary" [disabled]="!isCreator(comment.employee.eid)">Update</button><br><br>
+        </form>
+    </div>
+</div>

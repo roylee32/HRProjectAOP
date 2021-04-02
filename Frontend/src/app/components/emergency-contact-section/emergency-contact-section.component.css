@@ -1,0 +1,31 @@
+
+.card{
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4); 
+    text-align: center;
+    margin-bottom:5px;
+}
+.btn-secondary{
+    margin-right: 3px;
+    font-size: 15px;
+}
+label{  
+    font-size: 20px;
+}
+input{
+    size:30;
+    font-size: 15px;
+}
+h3{
+    text-align: center;
+    margin-top: 5px;
+    font-size: 20px;
+    color:blue;
+}
+.list-group-item{
+    font-size: 15px;
+}
+.tab {
+    display: inline-block;
+    margin-left: 40px;
+}

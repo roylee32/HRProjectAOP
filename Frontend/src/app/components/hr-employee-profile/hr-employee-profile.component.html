@@ -1,0 +1,27 @@
+<app-hr-nav-bar></app-hr-nav-bar>
+<h1>Employee Profile</h1>
+Search Employees: 
+<input type="text" [(ngModel)]="searchString">
+<ng-container *ngFor="let employee of employees; index as i;">
+    <ng-container *ngIf="inSearchResult(employee)">
+        <div class="card">
+            <div class="card-body">
+                Name: {{employee.employeeInfo.firstName}}
+                <ng-container *ngIf="employee.employeeInfo.middleName != null">
+                    {{employee.employeeInfo.middleName}}
+                </ng-container>
+                {{employee.employeeInfo.lastName}}<br>
+                SSN: {{employee.employeeInfo.SSN}}<br>
+                Start Date: {{employee.employeeInfo.startDate}}<br>
+                <ng-container *ngIf="employee.visaStatusInfo != null">
+                    Visa Status: {{employee.visaStatusInfo.visaType}}<br>
+                </ng-container>
+                <ng-container *ngIf="employee.visaStatusInfo == null">
+                    Visa Status: citizen or permanent resident<br>
+                </ng-container>
+                <button (click)="seeDetail(employee.employeeInfo.eid)">See Detail</button>
+            </div>
+            <{{i + 1}}/{{employees.length}}>
+        </div>
+    </ng-container>
+</ng-container>
